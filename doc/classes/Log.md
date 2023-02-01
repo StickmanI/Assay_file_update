@@ -1,7 +1,7 @@
 # General
 - Stores paths which raised Exception during move or copy operation
 
-# Attributes
+# Class Attributes
 - log_list: `List[str]`
 
 

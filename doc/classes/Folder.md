@@ -4,7 +4,7 @@
   - checks if path exists, if not existing raises Exception
 
 
-# Attributes
+# Class Attributes
 - path: `str`
   - path to folder as `str`
 - files: `List[File]`

@@ -3,7 +3,7 @@
 - raises Exception on instance creation if path to file is not existing
 
 
-# Attributes
+# Class Attributes
 - path: `str`
   - path to file as `str`
 - root: `str`

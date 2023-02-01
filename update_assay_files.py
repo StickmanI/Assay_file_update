@@ -203,6 +203,11 @@ class Log:
 
 
 class UpdateManager:
+    """
+    Creates backup of old assay files and updates to new version.
+
+    For more detail see doc/classes/UpdateManager.md
+    """
     update_log = Log()
     backup_log = Log()
     backup_folder_name_gen = BackupFolderNameFactory()
@@ -219,6 +224,7 @@ class UpdateManager:
         return None
 
     def backup_files(self) -> None:
+        """uses instance of Folder class to move old assay files to backup location."""
         backup_folder_name = self.backup_folder_name_gen.make(self.path_backup)
         backup_to = Path(self.path_backup).joinpath(backup_folder_name)
         self.old_files_folder.move(str(backup_to), self.backup_log)
@@ -227,12 +233,14 @@ class UpdateManager:
         return None
 
     def update_files(self) -> None:
+        """uses instnace of Folder class to copy new assay files to where old assay files were located."""
         self.updates_folder.copy(self.path_old_files, self.update_log)
         print('Updating assay files.')
         self.backup_log.print_log()
         return None
 
     def run(self) -> None:
+        """combines backup_file() and update_files()."""
         if self.updates_folder.is_empty:
             print('No Updates available.')
         elif self.old_files_folder.is_empty:
@@ -245,17 +253,15 @@ class UpdateManager:
         return None
 
 
-# if __name__ == "__main__":
-#     config_path = Path("./config.ini")
-#     if config_path.exists():
-#         config = ConfigParser()
-#         config.read(config_path)
+if __name__ == "__main__":
+    config_path = Path("./config.ini")
+    if config_path.exists():
+        config = ConfigParser()
+        config.read(config_path)
 
-#         manager = UpdateManager(config)
-#         manager.run()
-#     else:
-#         print(f'path to configuration file "{config_path}" does not exist \n')
+        manager = UpdateManager(config)
+        manager.run()
+    else:
+        print(f'path to configuration file "{config_path}" does not exist \n')
 
-#     exit_program()
-
-Folder(path='path/to/not/existing/folder')
+    exit_program()
