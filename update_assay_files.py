@@ -52,7 +52,7 @@ def _log_exception(log: "Log", operation: Callable, *args: Any) -> None:
     return None
 
 
-def exit_program() -> None:
+def pause_program() -> None:
     input('enter any key to exit\n')
     return None
 
@@ -264,4 +264,4 @@ if __name__ == "__main__":
     else:
         print(f'path to configuration file "{config_path}" does not exist \n')
 
-    exit_program()
+    pause_program()
