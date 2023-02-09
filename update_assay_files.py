@@ -14,7 +14,10 @@ def _check_path_exists(path: str) -> None:
     For more details see doc/functions/check_path_exists.md
     """
     if not Path(path).exists():
-        raise Exception(f'Path "{path}" does not exist.')
+        msg = f'Path "{path}" does not exist.'
+        print(msg)
+        pause_program()
+        raise Exception(msg)
     return None
 
 
